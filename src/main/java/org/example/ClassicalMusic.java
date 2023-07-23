@@ -5,4 +5,9 @@ public class ClassicalMusic implements Music{
     public String getSong() {
         return "Hungarian";
     }
+
+    @Override
+    public String toString() {
+        return "Classic music";
+    }
 }
