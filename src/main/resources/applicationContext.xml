@@ -12,12 +12,14 @@
 
     <bean id="musicClassic" class="org.example.ClassicalMusic"/>
 
-    <bean id="musicPlayer"
-          class="org.example.MusicPlayer">
+    <bean id="musicPop" class="org.example.PopMusic"/>
+
+    <bean id="musicPlayer" class="org.example.MusicPlayer" scope="prototype">
         <property name="musicList">
             <list>
                 <ref bean="musicRock"/>
                 <ref bean="musicClassic"/>
+                <ref bean="musicPop"/>
             </list>
         </property>
         <property name="name" value="${musicPlayer.name}"/>

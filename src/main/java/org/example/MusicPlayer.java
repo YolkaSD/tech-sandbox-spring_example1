@@ -33,6 +33,6 @@ public class MusicPlayer {
     }
 
     public void playMusic() {
-        musicList.forEach(music -> System.out.println("Playing: " + music));
+        musicList.forEach(music -> System.out.println("Playing: " + music.getSong()));
     }
 }
