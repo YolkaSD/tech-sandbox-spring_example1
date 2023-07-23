@@ -2,6 +2,9 @@ package org.example;
 
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class TestSpring {
     public static void main(String[] args) {
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(
@@ -15,8 +18,8 @@ public class TestSpring {
 //        Music music = context.getBean("musicBean", Music.class);
 //        MusicPlayer musicPlayer = new MusicPlayer(music);
 
-//        MusicPlayer firstMusicPlayer = context.getBean("musicPlayer", MusicPlayer.class);
-//        MusicPlayer secondMusicPlayer = context.getBean("musicPlayer", MusicPlayer.class);
+//        MusicPlayer firstMusicPlayer = context.getBean("someMusicPlayer", MusicPlayer.class);
+//        MusicPlayer secondMusicPlayer = context.getBean("someMusicPlayer", MusicPlayer.class);
 //
 //        firstMusicPlayer.playMusic();
 //        firstMusicPlayer.setName("Panasonic");
@@ -32,8 +35,18 @@ public class TestSpring {
 //        context.close();
 
         //factory method
+//        Music classicalMusic = context.getBean("musicClassic", ClassicalMusic.class);
+//        System.out.println(classicalMusic.getSong());
 
-        Music classicalMusic = context.getBean("musicClassic", ClassicalMusic.class);
-        System.out.println(classicalMusic.getSong());
+        Music someRockMusic= context.getBean("rockMusic", Music.class);
+        Music someClassicalMusic= context.getBean("classicalMusic", Music.class);
+
+//        System.out.println(someRockMusic.getSong());
+//        System.out.println(someClassicalMusic.getSong());
+
+        MusicPlayer somePlayerMusic= context.getBean("someMusicPlayer", MusicPlayer.class);
+        somePlayerMusic.setMusicList(List.of(someClassicalMusic, someRockMusic));
+        somePlayerMusic.playMusic();
+        context.close();
     }
 }

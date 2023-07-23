@@ -1,8 +1,13 @@
 package org.example;
 
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
+
 import java.util.ArrayList;
 import java.util.List;
 
+@Component("someMusicPlayer")
+@Scope("prototype")
 public class MusicPlayer {
     private List<Music> musicList = new ArrayList<>();
     private String name;
