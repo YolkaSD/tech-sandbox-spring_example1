@@ -6,6 +6,14 @@ public class RockMusic implements Music{
         return "Wind cries Mary";
     }
 
+    public void doMyInit() {
+        System.out.println("Doing my initialization: " + this);
+    }
+
+    public void doMyDestroy() {
+        System.out.println("Doing my destruction: " + this);
+    }
+
     @Override
     public String toString() {
         return "Rock music";
