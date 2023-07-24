@@ -1,17 +1,25 @@
 package org.example;
 
-import org.springframework.context.annotation.Scope;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
 import java.util.List;
 
-@Component("someMusicPlayer")
-@Scope("prototype")
+
+@Component
 public class MusicPlayer {
-    private List<Music> musicList = new ArrayList<>();
+    private Music music;
+
+    private ClassicalMusic classicalMusic;
+    private RockMusic rockMusic;
     private String name;
     private int volume;
+
+    @Autowired
+    public MusicPlayer(ClassicalMusic classicalMusic, RockMusic rockMusic) {
+        this.classicalMusic = classicalMusic;
+        this.rockMusic = rockMusic;
+    }
 
     public String getName() {
         return name;
@@ -29,25 +37,12 @@ public class MusicPlayer {
         this.volume = volume;
     }
 
-    public List<Music> getMusicList() {
-        return musicList;
+    public String playMusic() {
+        return "Playing: " + classicalMusic.getSong() + " " + rockMusic.getSong();
+//        System.out.println("Playing: " + classicalMusic.getSong());
+//        System.out.println("Playing: " + rockMusic.getSong());
     }
 
-    public void setMusicList(List<Music> musicList) {
-        this.musicList = musicList;
-    }
-
-    public void playMusic() {
-        musicList.forEach(music -> System.out.println("Playing: " + music.getSong()));
-    }
-
-    public void doMyInit() {
-        System.out.println("Doing my initialization: " + this);
-    }
-
-    public void doMyDestroy() {
-        System.out.println("Doing my destruction: " + this);
-    }
 
     @Override
     public String toString() {
