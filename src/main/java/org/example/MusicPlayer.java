@@ -1,24 +1,20 @@
 package org.example;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
-
-import java.util.List;
-
 
 @Component
 public class MusicPlayer {
-    private Music music;
-
-    private ClassicalMusic classicalMusic;
-    private RockMusic rockMusic;
+    private Music music1;
+    private Music music2;
     private String name;
     private int volume;
-
     @Autowired
-    public MusicPlayer(ClassicalMusic classicalMusic, RockMusic rockMusic) {
-        this.classicalMusic = classicalMusic;
-        this.rockMusic = rockMusic;
+    public MusicPlayer(@Qualifier("rockMusic") Music music1,
+                       @Qualifier("classicalMusic") Music music2) {
+        this.music1 = music1;
+        this.music2 = music2;
     }
 
     public String getName() {
@@ -38,9 +34,7 @@ public class MusicPlayer {
     }
 
     public String playMusic() {
-        return "Playing: " + classicalMusic.getSong() + " " + rockMusic.getSong();
-//        System.out.println("Playing: " + classicalMusic.getSong());
-//        System.out.println("Playing: " + rockMusic.getSong());
+        return "Playing: " + music1.getSong();
     }
 
 
